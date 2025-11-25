@@ -5,12 +5,3 @@ Noxryn's writing backup space for study notes, blog posts, and knowledge fragmen
 
 ---
 
-## Learn
-此目录下保存学习成长过程中保存的技术知识和编程经验
-
-## Blog
-此目录下保存博客中发表的文章，提供备份
-
-## Items
-此目录下保存项目编程实现过程，提供说明及解释
-
