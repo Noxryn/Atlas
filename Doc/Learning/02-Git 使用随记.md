@@ -1,6 +1,5 @@
 # 前言
 记录Git软件使用相关的流程、命令。   
-注：这不是一份专业的教程。  
 
 ---
 
@@ -11,11 +10,11 @@ Git 是一个用于管理源代码的分布式版本控制系统。 版本控制
 ## 1.下载地址  
 进入[git-scm网站](https://git-scm.com/downloads)
 后下对应系统版本的安装包
-![git-01](https://noxrynbed.oss-cn-chengdu.aliyuncs.com/img/git-01.png)
+![git-01](https://cdn.jsdelivr.net/gh/Noxryn/PicGallery@main/img/git-01.png)
 ## 2.注意事项
 安装包下载后双击安装，安装向导进行配置。具体操作可参考博文[Git 详细安装教程](https://blog.csdn.net/mukes/article/details/115693833?fromshare=blogdetail&sharetype=blogdetail&sharerId=115693833&sharerefer=PC&sharesource=Noxryn&sharefrom=from_link)
 # Git工作流程
-![git-02](https://noxrynbed.oss-cn-chengdu.aliyuncs.com/img/git-02.png)
+![git-02](https://cdn.jsdelivr.net/gh/Noxryn/PicGallery@main/img/git-02.png)
 # Git命令速成
 ## 1.软件初始配置
 ```

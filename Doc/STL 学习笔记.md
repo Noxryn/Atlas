@@ -1,0 +1,657 @@
+# 前言
+STL即标准模板库，是C++标准库的一部分，为C++程序员提供了丰富的容器、算法和迭代器支持。通过提供通用的数据结构和算法，减少了重复编写基础代码的需求，使用它可以帮助开发者写出更高效、更安全的代码。极大地增强了C++语言的功能性和灵活性，使开发者能够专注于解决实际问题而非底层细节。  
+例如我们所常用的string就是STL的内容，本文将介绍STL的基本内容及其语法。  
+
+---
+# 概述、
+## 什么是STL?
+C++ 标准模板库（Standard Template Library，STL）是一套功能强大的 C++ 模板类和函数的集合，它提供了一系列通用的、可复用的算法和数据结构。
+STL 的设计基于泛型编程，这意味着使用模板可以编写出独立于任何特定数据类型的代码。  
+STL 分为多个组件，包括**容器**（Containers）、**迭代器**（Iterators）、**算法**（Algorithms）、函数对象（Function Objects）和适配器（Adapters）等。
+
+## 使用 STL 的好处
+- **代码复用**：STL 提供了大量的通用数据结构和算法，可以减少重复编写代码的工作。
+- **性能优化**：STL 中的算法和数据结构都经过了优化，以提供最佳的性能。
+- **泛型编程**：使用模板，STL 支持泛型编程，使得算法和数据结构可以适用于任何数据类型。
+- **易于维护**：STL 的设计使得代码更加模块化，易于阅读和维护。
+  
+## 核心组件
+三大核心组件：***容器、算法、迭代器***  
+六大组件：**容器、算法、迭代器、仿函数、适配器、空间配置器**  
+
+### 容器  
+容器：存放数据 - 实现最广泛的数据结构如数组、链表、集合等  
+分类：
+- 序列式：强调值的排序，元素有固定的位置  
+- 关联式：二叉树结构，元素间没有严格的物理上的顺序关系  
+
+### 算法  
+算法：操作数据 - 有限步骤解决问题  
+- 质变算法：运算过程中会更改区间内的元素内容  
+- 非质变算法：运算过程中不会更改区间内的元素内容  
+- 
+### 迭代器
+迭代器：算法借助迭代器操作容器（注 迭代器和容器一一对应）    
+***迭代器归属于容器！***
+
+迭代器的种类：
+| 种类      | 功能                        | 操作                          |
+| ------- | ------------------------- | --------------------------- |
+| 输入迭代器   | 提供对数据的只读访问                | 只读，支持++,++,!=               |
+| 输出迭代器   | 提供对数据的只写访问                | 只写，支持++                     |
+| 向前迭代器   | 提供读写操作，并能向前推进             | 读写，执行++,++,!=               |
+| **双向迭代器**   | 提供读写操作，并能向前向后操作           | 读写，支持++,--                  |
+| **随机访问迭代器** | 提供读写操作，并能以跳跃的方式访问容器内的任意数据 | 读写，支持++,--,==,[n],<,<=,>,>= |
+
+起始迭代器begin():指向容器中第0个元素的位置  
+结束迭代器end():指向容器的尾元素的下一个位置
+
+### 其它
+仿函数：为算法提供策略  
+适配器：为算法提供更多的参数接口  
+空间适配器：为容器和算法分配空间  
+
+# vector - 单端动态数组
+- **随机访问迭代器** （iterator）  
+- 未雨绸缪机制：翻倍扩容，***重新分配更大空间进行复制，而不是原地扩容***   
+ ![vector_struct](https://noxrynbed.oss-cn-chengdu.aliyuncs.com/img/vector_struct.png)  
+
+## 接口
+```
+// 默认构造
+vector<T> vec;
+// 区间
+vector(begin, end);
+// 初始化值
+vector(n, elem); // n长度，elem元素
+// 拷贝
+vector(const vector &v);
+
+//  赋值
+operator =
+assign(v.begin(), v.end());
+assign(n, elem);
+
+// 遍历
+for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+{
+    cout << *it <<endl;
+}
+
+// <algorithm>
+for_each(v.begin(), v.end(), Func);
+
+// 元素数量
+size();
+// 容量
+capacity();
+// 判空
+empty();
+// 重置容器大小
+resize(n, elem); //超出默认补0
+// 预留空间
+reserve(n); //仅预留一次
+
+// 交换
+swap(v2);
+// 缩小空间
+vector<int> (v1).swap(v1); //利用匿名对象交换空间
+
+// 尾插
+push_back(20);
+// 尾删
+pop_back();
+// 插入元素
+insert(begin，end，elem)；
+// 删除元素
+erase(begin，end);// 不包括结尾
+// 清空
+clear();
+
+// 返回首元素
+front();
+// 返回尾元素
+back();
+// 取值
+vec[n]; //不会抛出异常
+at(n); //抛出异常 
+```
+
+# string - 字符串
+## string 和 char *的区别
+- char* 是一个指针
+- string 是一个类，内部封装char*
+
+## 接口
+```
+// 默认构造
+string str;
+// 字符串初始化
+string(const char *s)
+// 拷贝构造
+string(const string &s)
+// 字符初始化
+string(int n, char c);
+
+// 赋值
+string str = cstr;
+string str = str2;
+stting str = c;
+string str.assign(cstr);
+string str.assign(cstr, 2); // cstr中前n个数赋值
+string str.assign(str);
+string str.assign(n, c); 赋值n个c字符
+
+// 拼接
+str += cstr;
+str1 += s;
+str += c;
+append(cstr);
+ppend(cstr,n); // 拼接cstr前n个字符
+append(s);
+append(s, begin, n); // 拼接str2中begin位置开始的n个字符
+
+// 查找
+find(text, begin)； //返回位置 int 从左往右查找
+rfind(str, n); // 从右往左查找
+// 替换
+replace(begin, len, text);
+
+// 比较
+compare(const string &s); // 依次比较
+
+// 存取
+str[n];
+at(n);
+
+// 提取子串
+substr(begin，len)；
+
+// 插入
+insert(begin，text;)
+// 删除
+erase(begin，len);
+
+// char*自动转换string
+// string 转换char *
+c_str();
+```
+
+# deque - 双端动态数组
+## dque与vector区别
+- vector对于头部插入删除效率低
+- deque对头部插入删除快
+- vector访问元素比deque快（deque使用中控器维护空间）  
+- **不会因为插入数据的多少影响操作**  
+- **deque容器没有容量的概念，将新的空间链接到后端**
+## 接口
+```
+// 构造
+deque<T> deq;
+deque(begin, end);
+deque(n,elem);
+deque(const deque &d);
+
+//赋值
+operator = ;
+assign(d.begin(), d.end());
+assign(n, elem);
+
+// 判空
+empty();
+// 获取元素数量
+size();
+// 重设存储大小
+resize(num，elem);
+
+//尾插
+push_back(m);
+//头插
+push_front(m);
+//头删
+pop_front();
+//尾删
+pop_back();
+//插入
+insert(begin，len，elem);
+inser(begin，d.begin(), d.end());
+// 删除
+erase(begin，end);
+// 取值
+at(n);
+d[n];
+front();
+back();
+// 排序
+sort(begin,end);
+```
+# stack - 栈
+- 先进后出
+## 接口
+```
+// 默认构造
+stack<T> stk;
+// 拷贝构造
+stack(const stack &stk);
+
+// 压栈
+push();
+// 出栈
+pop();
+// 返回栈顶元素
+top();
+// 判空
+empty();
+// 栈大小
+size();
+```
+# queue - 队列
+- 先进先出
+![queue](https://noxrynbed.oss-cn-chengdu.aliyuncs.com/img/queue.png)  
+
+## 接口
+```
+// 默认构造
+queue<T> que;
+// 拷贝构造
+queue(const queue &que);
+
+// 赋值
+operator =;
+
+// 入队
+push();
+// 出队
+pop();
+// 返回尾元素
+back();
+// 返回首元素
+front();
+
+// 判空
+empty();
+// 队大小
+size();
+```
+# list - 链表
+- 链式存储
+- 结点 = 数据域 + 指针
+- list为双向循环链表
+![list](https://noxrynbed.oss-cn-chengdu.aliyuncs.com/img/list.png) 
+
+## 接口
+```
+// 构造
+list<T> lst;
+list(begin, end);
+list(n, elem);
+list(const list &lst);
+
+// 赋值
+assign(begin, end);
+assign(n, elem);
+operator = ;
+swap(lst);
+
+// 链表大小
+size();
+// 判空
+empty();
+// 重设容量
+resize(num);
+// 重设容量，并指定初始值
+resize(num. elem);
+
+// 尾插
+push_back();
+// 尾删
+pop_back();
+// 头插
+push_front()
+// 头删
+pop_front();
+// 插入
+insert(pos , elem);
+insert(pos, n, elem);
+insert(pos, begin, end);
+// 清空
+clear();
+// 删除
+erase(begin, end);
+erase(pos);
+// 移除匹配值
+remove(elem);
+
+// 取首元素
+front();
+// 取尾元素
+back();
+
+// 反转
+reverse();
+// 排序
+sort(begin, end); // 不支持随机访问迭代器的容器不支持标准算法
+sort();
+sort(myCompare); // 自定义比较实现降序 bool
+```
+# set - 集合
+- 自动排序，关联式容器
+- 二叉树实现
+## set 和 multiset区别
+- set不容许重复元素
+- mutiset容许重复元素
+## 接口
+```
+// 构造
+set<T> st;
+set(const set &st);
+// 赋值
+operator =;
+
+// 判空
+empty();
+// 集合大小
+size();
+// 交换
+swap(st);
+
+// 插入
+insert(elem);
+// 清空
+clear();
+// 删除
+erase(pos); // 删除位置
+erase(begin, end); // 删除区间
+erase(elem); // 删除值
+
+// 查找
+find(key);
+// 统计
+count(key);
+
+// 仿函数实现排序
+class MyCompare
+{
+public:
+    bool operator()(int v1, int v2)
+    {
+        return v1 > v2;
+    }
+}
+set<int, MyCompare> st;
+```
+# pari - 对组
+- 成对出现的数据
+## 接口
+```
+// 构造
+pair<type, type> p (val1, val2);
+pair<type, type> p = make_pair(val1, val2);
+
+// 取值
+first;
+second;
+```
+
+# map - 键值对
+- 元素为pair(key, value)
+- 自动排序，关联式容器
+- 二叉树
+## map和multimap区别
+- map不容许容器中重复key
+- multimap容许容器中有重复key
+
+## 接口
+```
+// 构造
+map<T1, T2> map;
+map(cosnt map &map);
+// 赋值
+operator = ;
+
+// 大小
+size();
+// 判空
+empty();
+// 交换
+swap(map);
+
+// 插入
+insert(pair);
+// 清空
+clear();
+// 删除
+erase(pos);
+erase(begin, end);
+erase(key);
+
+// 查找
+find(key);
+// 统计
+count(key);
+```
+# 仿函数
+## 函数对象 
+函数对象 - 重载函数调用操作符的类的对象  
+仿函数- 函数对象使用重载()时类似函数调用  
+- 本质为类  
+```
+class MyName
+{
+public:
+    T operator()(T){
+
+    }
+}
+
+MyName(T);
+```
+## 谓词
+概念：
+- 返回bool类型的仿函数
+- 按照operator()接受的参数数量分为一元谓词和二元谓词
+- _Pred
+
+## 内建函数对象 `<functional>`
+### 算术仿函数
+- 四则元素
+- negte是一元运算
+```
+templte<class T> T plus<T>        // 加
+templte<class T> T minus<T>       // 减
+templte<class T> T multiplies<T>  // 乘
+templte<class T> T divides<T>     // 除
+templte<class T> T modulus<T>     // 取模
+templte<class T> T negate<T>      // 取反
+```
+### 关系仿函数
+- 关系对比
+```
+templte<class T> bool equal_to<T>     // =
+templte<class T> bool not_equal_to<T> // !=
+templte<class T> bool greater<T>      // >
+templte<class T> bool greaer_equal<T> // >=
+templte<class T> bool less<T>         // <
+templte<class T> bool less_equal<T>   // <=
+```
+### 逻辑仿函数
+- 逻辑运算
+```
+templte<class T> bool logical_and<T>  // & 
+templte<class T> bool logical_or<T>   // |
+templte<class T> bool logical_not<T>  // !
+```
+# 算法
+- `<algorithm>`  - 主要算法
+- `<functional>` - 序列 
+- `<numeric>`    - 函数对象
+
+## 遍历
+```
+// 遍历  begin --> func -->end
+for_each(itertaor begin, itertaor end, _func);
+
+// 数据搬运 v -- > func --> v'
+// v' 提前开辟空间
+transform(begin, end , begin', end', _func);
+```
+
+## 查找
+```
+// 查找元素
+find (begin, end , value); // 自定义重载 =
+// 按条件查找
+find_if (begin, end, _Pred);
+// 查找相邻重复元素
+adjacent_find(begin, end);
+// 二分查找
+binry_search(begin, end, value) // 有序序列
+// 统计
+count(begin, end, vlue);
+// 按条件统计
+count_if(begin, end, _Pred);
+```
+
+## 排序
+```
+// 排序
+sort(begin, end, _Pred);
+// 洗牌
+srand((unsigned int)time(NULL));
+random_shuffle(begin, end);
+// 合并
+mereg(begin, end, begin', end', dest_begin); // v + v' --> dest
+// 反转
+reverse(begin, end);
+```
+
+## 拷贝和替换
+```
+// 拷贝  v - >begin
+copy(begin, end, dest_begin)
+// 替换 newV -> oldV
+replace(begin, end, oldV, newV);
+// 条件替换
+replace_if(begin, end, _pred, newV);
+// 互换
+swap(container V1, container V2);
+```
+
+## 算术生成（小） 和 集合
+```
+// 计算总和
+accumulate(begin, end , value); // value为起始累加值
+// 填充
+fill(begin, end, value);
+
+// 交集
+set_intersection(begin, end, begin', end', dest);
+// 并集
+set_union(begin, end, begin', end', dest); // 有序
+// 差集
+set_difference(begin, end, begin', end', dest); // 有序
+```
+
+## C++ STL简介
+```
+(一)vector, 变长数组，倍增的思想
+    size()  返回元素个数
+    empty()  返回是否为空
+    clear()  清空
+    front()/back()
+    push_back()/pop_back()
+    begin()/end()
+    []
+    支持比较运算，按字典序
+
+(二)pair<int, int>
+    first, 第一个元素
+    second, 第二个元素
+    支持比较运算，以first为第一关键字，以second为第二关键字（字典序）
+
+(三)string，字符串
+    size()/length()  返回字符串长度
+    empty()
+    clear()
+    substr(起始下标，(子串长度))  返回子串
+    c_str()  返回字符串所在字符数组的起始地址
+
+(四)queue, 队列
+    size()
+    empty()
+    push()  向队尾插入一个元素
+    front()  返回队头元素
+    back()  返回队尾元素
+    pop()  弹出队头元素
+
+(五)priority_queue, 优先队列，默认是大根堆
+    size()
+    empty()
+    push()  插入一个元素
+    top()  返回堆顶元素
+    pop()  弹出堆顶元素
+    定义成小根堆的方式：priority_queue<int, vector<int>, greater<int>> q;
+
+(六)stack, 栈
+    size()
+    empty()
+    push()  向栈顶插入一个元素
+    top()  返回栈顶元素
+    pop()  弹出栈顶元素
+
+(七)deque, 双端队列
+    size()
+    empty()
+    clear()
+    front()/back()
+    push_back()/pop_back()
+    push_front()/pop_front()
+    begin()/end()
+    []
+
+(八)set, map, multiset, multimap, 基于平衡二叉树（红黑树），动态维护有序序列
+    size()
+    empty()
+    clear()
+    begin()/end()
+    ++, -- 返回前驱和后继，时间复杂度 O(logn)
+
+    set/multiset
+        insert()  插入一个数
+        find()  查找一个数
+        count()  返回某一个数的个数
+        erase()
+            (1) 输入是一个数x，删除所有x   O(k + logn)
+            (2) 输入一个迭代器，删除这个迭代器
+        lower_bound()/upper_bound()
+            lower_bound(x)  返回大于等于x的最小的数的迭代器
+            upper_bound(x)  返回大于x的最小的数的迭代器
+    map/multimap
+        insert()  插入的数是一个pair
+        erase()  输入的参数是pair或者迭代器
+        find()
+        []  注意multimap不支持此操作。 时间复杂度是 O(logn)
+        lower_bound()/upper_bound()
+
+(九)unordered_set, unordered_map, unordered_multiset, unordered_multimap, 哈希表
+    和上面类似，增删改查的时间复杂度是 O(1)
+    不支持 lower_bound()/upper_bound()， 迭代器的++，--
+
+(十)bitset, 圧位
+    bitset<10000> s;
+    ~, &, |, ^
+    >>, <<
+    ==, !=
+    []
+
+    count()  返回有多少个1
+
+    any()  判断是否至少有一个1
+    none()  判断是否全为0
+
+    set()  把所有位置成1
+    set(k, v)  将第k位变成v
+    reset()  把所有位变成0
+    flip()  等价于~
+    flip(k) 把第k位取反
+```
