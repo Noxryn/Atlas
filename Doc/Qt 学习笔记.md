@@ -11,13 +11,14 @@ CONFIG += c++11                                  // C++版本
 // TARGET = demo                                 // 应用程序名
 // TEMPLATE = app                                // 模板类型
 DEFINES += QT_DEPRECATED_WARNINGS                // 编译选项，若功能标记为过时则警告
-SOURCES += \                                    // 源文件
+SOURCES += \                                     // 源文件
     main.cpp \
     mainwindow.cpp
-HEADERS += \   // 头文件
+HEADERS += \                                    // 头文件
     mainwindow.h
-FORMS += \
+FORMS += \                                      // ui 界面
     mainwindow.ui
+
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
@@ -37,16 +38,20 @@ int main(int argc, char *argv[])
 ```
 
 # 对象模型（对象树）
-概念：Qt对象间的父子关系
+
+概念：Qt 对象间的父子关系
 解决问题：解决内存问题，简化内存回收
-- QObject是以对象树的形式组织起来的
-- 创建QObject对象时可以提供一个父对象，该对象会自动添加到其父对象的children()列表
+- QObject 是以对象树的形式组织起来的
+- 创建 QObject 对象时可以提供一个父对象，该对象会自动添加到其父对象的 children() 列表
 - 父对象析构时，子对象也会被析构
-- QWidget是一切UI显示组件的父类
+- QWidget 是一切 UI 显示组件的父类
 - 注意不要重复析构
 
 # 信号与槽机制
+
 - 观察者模式 松散耦合
+- 信号-槽(信号)
+
 ```
 connect(sender,signal,receiver,slot);
 /*
@@ -71,7 +76,146 @@ connect(tea,teachersignal,stu,studentslot);
 ```
 
 
+# 界面函数
+
+## 按钮
+
+```
+
+```
+
+## 菜单栏
+
+```
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+
+// 菜单栏
+QMenuBar *menu_bar = new QMenuBar(this);
+this->setMenuBar(menu_bar);
+// 菜单
+QMenu *menu = new QMenu("str");
+menu_bar->addMenu(menu);
+// 菜单项
+QAction *act = new Action("str);
+menu->addAction(act);
+
+```
+
+## 工具栏
+
+```
+#include <QToolBar>
+#include <QAction>
+
+QToolBar *toolbar = new ;
+this->addToolBar(toolbar);
+
+tool->addAction(act);
+
+// 不可移动
+toolbar->setMovable(false);
+
+// 可停靠位置
+LeftToolBarArea RightToolBarArea TopToolBarArea BottomToolBarArea AllToolBarArea
+toolbar->setAllowedAreas();
+
+// 浮动状态
+toolbar->setFloatable(false);
+
+```
+
+## 状态栏
+
+```
+#include <QStatusBar>
+
+this->setStatusBar(bar);
+// 信息
+bar->showMessage("str",timenum); // 临时
+bar->addWidget(label)            // 正式（左）
+bar-addPermanentWidget(label)    // 永久（右）
+```
+
+## 铆接部件
+
+```
+<QDockWidget> // 浮动窗口
+addDockWidget
+```
+
+## 核心部件
+
+其它所有部件
+
+```
+setCentralWidget()
+```
+
+## 图片
+
+```
+QPixmap pix;
+pix.lod(":/path");
+setIcon(QIcon(pix)); // 标签
+QPalette pal;  // 背景图
+pal.setBrush(QPalette::Background,QBrush(pix));
+setPalette(pal) 
+
+setAutoFillBackgroud(true) // 允许绘制
+```
+## UI
+
+```
+Layouts 布局
+Spacers 固定弹簧
+Button 按钮
+Item Views 列表
+Item Widgets 窗
+Containers   容器
+Inpus Widgets 输入窗
+Dispaly Widgets 显示窗
+```
+
+## QDialog
+
+模态：阻塞其它界面
+```
+QDialog dialog
+dialog.setWindowTitle("str");
+dialog.exec();
+```
+非模态；不阻塞
+```
+QDialog *dialog - new QDialog;
+dialog->setAttribute(QT::WA_DeleteOnClose); // 关闭后销毁
+dialog.setWindowTitle("str");
+dialog.show();
+```
+
+## 标准对话框s
+
+```
+<QColorDialog> // 选择颜色
+<QFileDialog>  // 选择文件
+<QFontDialog>  // 选择字体
+<QInputDialog> // 输入值
+<QPageSetupDialog> // 打印机提供纸张
+<QPrintDialog>     // 打印机配置
+<QPrintPreviewDialog> // 打印预览
+<QProgressDialog>    // 显示操作过程
+<QMessageBox>        // 显示消息
+```
+
+# 
+
+
+
+# 多线程
+
 ## 一、派生于QThread
+
 重写虚函数void_QThread:run()，在run方法里写具体的内容，外部通过Thread01的实例化对象去调用start方法，即可执行线程体run()。  
 派生于QThread的类，构造函数属于主线程，run函数属于子线程，可以通过currentThreadId()方法打印线程id判断。
 ```cpp
@@ -128,6 +272,7 @@ int main(int argc, char *argv[])
 
 ```
 ## 二、派生于QRunnable
+
 1、具体思路
 创建一个类Thread02，派生于QRunnable，重写run()方法，在run方法里处理其它任务，不同的是，调用时不再是start方法，而是需要借助Qt线程池QThreadPool
 MyThread *pTh = new MyThread();
@@ -191,6 +336,7 @@ int main(int argc, char *argv[])
 ```
 
 ## 三、moveToThread
+
 1、具体思路
 创建一个类Thread03，派生于QObject,使用moveToThread方法将QThread对象作为私有成员，在构造函数里moveToThread，然后调用start方法启动线程。
 this->moveToThread(&m_th);
