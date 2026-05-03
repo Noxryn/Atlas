@@ -7,13 +7,15 @@
 
 ---
 ## 📖 Table of Contents
-- **[Introduction](#-introduction)**
-- **[Features](#-features)**
-- **[Project Structure](#️-project-structure)**
-- **[Getting Started](#-getting-started)**
-- **[Contribution Guide](#-contribution)**
-- **[License](#-license)**
-- **[Author](#-author)**
+- [📦 Atlas](#-atlas)
+  - [📖 Table of Contents](#-table-of-contents)
+  - [💡 Introduction](#-introduction)
+  - [✨ Features](#-features)
+  - [🗂️ Project Structure](#️-project-structure)
+  - [🚀 Getting Started](#-getting-started)
+  - [🤝 Contribution](#-contribution)
+  - [📄 License](#-license)
+  - [👤 Author](#-author)
 ## 💡 Introduction
 
 This is a knowledge base designed for organizing fragmented information generated during personal learning and development processes. It aims to solve the pain point of "a good memory is not as reliable as a bad pen," centralizing scattered inspirations, code snippets, and important documents.
@@ -30,9 +32,18 @@ This is a knowledge base designed for organizing fragmented information generate
 
 eg:
 ```
-Sundry
+Atlas
 ├── README.md
 ├── LICENSE
+|__ Book
+|__ Code
+|__ Doc
+|   |—— Learning
+|   |__ Reading
+|   |__ Results
+|   |__ Solving
+|__ Lib
+|__ Other
 ```
 
 ## 🚀 Getting Started
