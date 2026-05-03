@@ -125,3 +125,20 @@ gitignore文件用使Git忽略指定文件。
 .obsidian
 ```
 
+# 日志提交规范
+
+| 类型     | 介绍         | 脚注            | 功能       |
+| -------- | ------------ | --------------- | ---------- |
+| feat     | 新增功能     | BREAKING CHANGE | 破坏性修改 |
+| fix      | 修改bug      | Closes #`<num>` | 关闭issue  |
+| to       | 发现bug      |                 |            |
+| docs     | 文档更新     |                 |            |
+| style    | 格式更新     |                 |            |
+| refactor | 重构代码     |                 |            |
+| perf     | 性能优化     |                 |            |
+| test     | 测试用例     |                 |            |
+| chore    | 其它修改     |                 |            |
+| ci       | CI配置修改   |                 |            |
+| build    | 构建系统变更 |                 |            |
+| release  | 发布新版本   |                 |            |
+

@@ -733,7 +733,7 @@ foolib(hack.o) foolib(kludge.o)
 ```
 
 # 例
-## 1 
+## 例1： 
 ### 项目目录
 
 ```
@@ -863,7 +863,7 @@ LINK_LIBS = foo bar
 include $(ROOT)/build/make.rule
 
 ```
-## 2
+## 例2：
 ### 项目目录
 ```
 <project>
