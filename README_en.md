@@ -18,7 +18,7 @@
   - [👤 Author](#-author)
 ## 💡 Introduction
 
-This is a knowledge base designed for organizing fragmented information generated during personal learning and development processes. It aims to solve the pain point of "a good memory is not as reliable as a bad pen," centralizing scattered inspirations, code snippets, and important documents.
+This is a knowledge base designed for organizing fragmented information generated during personal learning and development processes. 
 
 *This README serves as a template.*
 
