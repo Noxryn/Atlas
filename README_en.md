@@ -36,13 +36,10 @@ Atlas
 ├── README.md
 ├── LICENSE
 |__ Book
-|__ Code
 |__ Doc
-|   |—— Learning
-|   |__ Reading
-|   |__ Results
-|   |__ Solving
-|__ Lib
+|   |—— ALGO
+|   |__ KITS
+|   |__ PRAXIS   
 |__ Other
 ```
 
