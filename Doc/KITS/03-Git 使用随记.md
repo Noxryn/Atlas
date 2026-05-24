@@ -130,7 +130,7 @@ gitignore文件用使Git忽略指定文件。
 | 类型     | 介绍         | 脚注            | 功能       |
 | -------- | ------------ | --------------- | ---------- |
 | feat     | 新增功能     | BREAKING CHANGE | 破坏性修改 |
-| fix      | 修改bug      | Closes #`<num>` | 关闭issue  |
+| fix      | 修复缺陷     | Closes #`<num>` | 关闭issue  |
 | to       | 发现bug      |                 |            |
 | docs     | 文档更新     |                 |            |
 | style    | 格式更新     |                 |            |
@@ -141,4 +141,6 @@ gitignore文件用使Git忽略指定文件。
 | ci       | CI配置修改   |                 |            |
 | build    | 构建系统变更 |                 |            |
 | release  | 发布新版本   |                 |            |
+| revert   | 回滚版本     |                 |            |
 
+注：以上规范仅供参考，具体按照项目规范或公司要求确定！！！
