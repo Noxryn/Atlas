@@ -36,7 +36,7 @@ eg:
 Atlas
 ├── README.md
 ├── LICENSE
-|__ Book
+|—— Code
 |__ Doc
 |   |—— ALGO
 |   |__ KITS
