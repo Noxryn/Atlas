@@ -844,8 +844,10 @@ foolib(hack.o) foolib(kludge.o)
 >  $(RM) $*.o
 ```
 
-# 例
+# 项目示例
+
 ## 例1： 
+
 ### 项目目录
 
 ```
@@ -868,7 +870,9 @@ foolib(hack.o) foolib(kludge.o)
 ```
 
 ### 文件内容
+
 #### make.rule
+
 ```
 .PHONY: all clean
 
@@ -948,7 +952,9 @@ $(DIR_DEPS)/%.dep: $(DIR_DEPS) %.c
 clean:
 	$(RM) $(RMFLAGS) $(RMS)
 ```
+
 #### foo
+
 ```
 EXE =
 
@@ -961,7 +967,9 @@ LINK_LIBS =
 include $(ROOT)/build/make.rule
 
 ```
+
 #### main
+
 ```
 EXE = huge.exe
 
@@ -975,8 +983,11 @@ LINK_LIBS = foo bar
 include $(ROOT)/build/make.rule
 
 ```
+
 ## 例2：
+
 ### 项目目录
+
 ```
 <project>
 ├── Makefile
@@ -986,7 +997,9 @@ include $(ROOT)/build/make.rule
     ├── hello.h
     └── main.c
 ```
+
 ### Makefile 文件内容
+
 ```
 SRC_DIR = ./src
 BUILD_DIR = ./build
@@ -1033,4 +1046,9 @@ clean:
 -include $(DEPS)
 
 ```
+
+# 参考文献
+
+[1]. 陈皓.跟我一起写Makefile
+[2]. 李云.驾驭 Makefile
 
