@@ -1,66 +1,64 @@
 # 📦 Atlas
+
 <!--logo-->
 
 
 <!--badge-->
+[Chines](README_zh.md) | [English](README.md) 
 
 ---
-## 📖 目录
-
+## 📖 Table of Contents
 - [📦 Atlas](#-atlas)
-  - [📖 目录](#-目录)
-  - [💡 简介](#-简介)
-  - [✨ 功能亮点](#-功能亮点)
-  - [🗂️ 项目结构](#️-项目结构)
-  - [🚀 快速开始](#-快速开始)
-  - [🤝 贡献](#-贡献)
-  - [📄 许可证](#-许可证)
-  - [👤 作者](#-作者)
+  - [📖 Table of Contents](#-table-of-contents)
+  - [💡 Introduction](#-introduction)
+  - [✨ Features](#-features)
+  - [🗂️ Project Structure](#️-project-structure)
+  - [🚀 Getting Started](#-getting-started)
+  - [🤝 Contribution](#-contribution)
+  - [📄 License](#-license)
+  - [👤 Author](#-author)
+## 💡 Introduction
 
-## 💡 简介
+This is a knowledge base designed for organizing fragmented information generated during personal learning and development processes. 
 
-这是一个用于整理个人学习与开发过程中产生的碎片化信息的知识库。
+*This README serves as a template.*
 
-*此 README 作为模板使用*
+## ✨ Features
 
-## ✨ 功能亮点
+- **📚 Knowledge Archiving**: Stores learning notes, technical documentation, and reference materials with long-term reuse value.
+- **💻 Code Snippets**: Collects frequently used code templates, scripts, or algorithm implementations to reduce time spent reinventing the wheel.
+- **🎯 Flexible Expansion**: Simple structure that can be infinitely expanded according to personal needs, adapting to learning trajectories across different domains.
 
-- **📚 知识归档**：存储具有长期复用价值的学习笔记、技术文档和参考资料。
-- **💻 代码片段**：收集高频使用的代码模板、脚本或算法实现，减少重复造轮子的时间。
-- **🎯 灵活扩展**：结构简单，可根据个人需求无限扩展目录，适配不同领域的学习轨迹。
-
-## 🗂️ 项目结构
+## 🗂️ Project Structure
 
 eg:
 ```
 Atlas
 ├── README.md
 ├── LICENSE
-|—— Code
-|__ Doc
-|   |—— ALGO
-|   |__ KITS
-|   |__ PRAXIS
-|__ Other
+|—— ALGO
+|__ KITS
+|__ PRAXIS 
+|__ SOURCE  
 ```
 
-## 🚀 快速开始
+## 🚀 Getting Started
 
-1. 克隆仓库
-2. 直接下载后查看
+1. Clone the repository
+2. Download directly and view
 
-## 🤝 贡献
+## 🤝 Contribution
 
-欢迎提交 PR 或 Issue！
+PRs and Issues are welcome!
 
-## 📄 许可证
+## 📄 License
 
-本项目基于木兰宽松许可证。详细信息请参阅[LICENSE](LICENSE)文件。
+This project is licensed under the Mulan Permissive Software License. For details, please refer to the [LICENSE](LICENSE) file.
 
 ---
 
-## 👤 作者
+## 👤 Author
 
 **Noxryn**
-- **GitHub**:[@Noxryn](https://www.github.com/noxryn "GitHub") 
-- **博客**:[01异步手札](https://www.noxryn.top "博客")
+- GitHub: [@Noxryn](https://www.github.com/noxryn "GitHub")
+- Blog: [01 Asynchronous Notes](https://www.noxryn.top "Blog")
